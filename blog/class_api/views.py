@@ -59,7 +59,7 @@ class MovieListAPIView(APIView):
         response = serializer.data
         return Response(response, status=status.HTTP_200_OK)
 
-    def post(self, request,):
+    def post(self, request):
         data = request.data
         serializer = MovieSerializer(data=data)
         if serializer.is_valid():

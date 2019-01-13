@@ -44,7 +44,7 @@ class MovieSerializer(serializers.ModelSerializer):
         print(songs)
         for song in songs:
             print(song)
-            Song.objects.create(**song, movie=movie)
+            Song.objects.create(**song, movie_id=movie.id)
         return movie
 
 
