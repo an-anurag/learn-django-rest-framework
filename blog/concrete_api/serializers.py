@@ -17,9 +17,8 @@ class PostCreateSerializer(serializers.ModelSerializer):
         )
 
 
-class PostListSerializer(serializers.ModelSerializer, TaggitSerializer):
+class PostListSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='blog_api:detail', lookup_field='slug')
-    comments = TagListSerializerField()
 
     class Meta:
         model = Post
@@ -29,7 +28,6 @@ class PostListSerializer(serializers.ModelSerializer, TaggitSerializer):
             'slug',
             'author',
             'body',
-            'comments',
             'publish',
             'created',
             'updated',
@@ -37,7 +35,10 @@ class PostListSerializer(serializers.ModelSerializer, TaggitSerializer):
         )
 
 
-class PostDetailSerializer(serializers.ModelSerializer):
+class PostDetailSerializer(serializers.ModelSerializer, TaggitSerializer):
+    tags = TagListSerializerField()
+    comments = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = Post
         fields = (
@@ -45,11 +46,12 @@ class PostDetailSerializer(serializers.ModelSerializer):
             'title',
             'slug',
             'author',
+            'tags',
             'body',
+            'comments',
             'publish',
             'created',
             'updated',
-
         )
 
 

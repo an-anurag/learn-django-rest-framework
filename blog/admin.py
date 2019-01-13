@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, Movie, Song
 
 # Register your models here.
 
@@ -26,3 +26,17 @@ class CommentAdmin(admin.ModelAdmin):
 admin.site.register(Comment, CommentAdmin)
 
 
+class MovieAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
+    # raw_id_fields = ('director',)
+
+
+admin.site.register(Movie, MovieAdmin)
+
+
+class SongAdmin(admin.ModelAdmin):
+    search_fields = ('title',)
+    raw_id_fields = ('composer',)
+
+
+admin.site.register(Song, SongAdmin)

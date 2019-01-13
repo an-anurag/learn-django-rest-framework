@@ -67,3 +67,27 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment by {} on {}'.format(self.name, self.post)
+
+
+class Movie(models.Model):
+    name = models.CharField(max_length=25)
+    director = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField()
+    year = models.DateField()
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def songs(self):
+        return self.song_set.all()
+
+
+class Song(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    title = models.CharField(max_length=30)
+    composer = models.ForeignKey(User, on_delete=models.CASCADE)
+    duration = models.TimeField()
+
+    def __str__(self):
+        return self.title

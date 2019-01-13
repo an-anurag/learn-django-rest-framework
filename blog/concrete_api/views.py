@@ -26,6 +26,7 @@ class PostListAPIView(ListAPIView):
     queryset = Post.published.all()
     serializer_class = PostListSerializer
     permission_classes = [AllowAny]
+    lookup_field = 'slug'
 
 
 class PostDetailAPIView(RetrieveAPIView):
@@ -71,6 +72,3 @@ class LoginViewSet(viewsets.ViewSet):
     def create(self, reqeust):
         """ Use the ObtainAuthToken APIView to validate and create a token"""
         return ObtainAuthToken().post(reqeust)
-
-
-

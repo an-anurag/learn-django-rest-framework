@@ -28,9 +28,9 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     # path('concrete_api/', include('blog.concrete_api.urls', namespace='blog_api')),
     path('function_api/', include('blog.function_api.urls')),
-    path('class_api/', include('blog.class_api.urls')),
+    path('class_api/', include('blog.class_api.urls', namespace='blog')),
     path('generic_api/', include('blog.generic_api.urls')),
-    path('generic_api/auth/', include('rest_framework.urls'))
+    path('generic_api/auth/', include('rest_framework.urls')),
+    path('concrete_api/', include('blog.concrete_api.urls', namespace='blog_api'))
 
 ]
-
