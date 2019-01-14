@@ -63,26 +63,34 @@ class MovieSerializer(serializers.ModelSerializer):
         print(validated_data)
         # pop song because it is not a field of movie
         songs = validated_data.pop('songs')
+        print(validated_data)
         instance.name = validated_data.get("name", instance.name)
         instance.save()
         keep_songs = []
         existing_ids = [song.id for song in instance.songs]
+        print(existing_ids)
         for song in songs:
+            print(song)
             if 'id' in song.keys():
                 if Song.objects.filter(id=song['id']).exists():
                     s = Song.objects.get(id=song['id'])
-                    s.title = song.get('title', song.title)
+                    print(s)
+                    print(type(s))
+                    print(s.title)
+                    s.title = song.get('title', s.title)
+
                     s.save()
-                    keep_songs.append(song.id)
+                    keep_songs.append(s.id)
                 else:
                     continue
             else:
                 s = Song.objects.create(**song, movie=instance)
                 keep_songs.append(s.id)
-        
+
         for song in instance.songs:
             if song.id not in keep_songs:
                 song.delete()
+
         return instance
 
 
@@ -100,5 +108,4 @@ class PostSerializer(serializers.ModelSerializer):
             'status',
             'comments',
             # 'url',
-
         )
