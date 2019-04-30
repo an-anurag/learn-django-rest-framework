@@ -8,6 +8,7 @@ from taggit.models import Tag
 from django.db.models import Count
 from haystack.query import SearchQuerySet
 
+
 # Create your views here.
 
 
@@ -140,3 +141,7 @@ def post_search(request):
             return render(request, template_name=template, context=context)
 
     return render(request, template_name=template, context={'form': form})
+
+
+def download_pdf(request, post_id=None):
+    post = Post.published.get(id=post_id)

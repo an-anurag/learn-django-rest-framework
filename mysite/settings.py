@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'taggit',
     'haystack',
+    'myapp.apps.MyappConfig',
+
 
 
 ]

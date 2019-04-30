@@ -31,7 +31,7 @@ urlpatterns = [
     path('class_api/', include('blog.class_api.urls', namespace='blog')),
     path('generic_api/', include('blog.generic_api.urls')),
     path('generic_api/auth/', include('rest_framework.urls')),
-    path('concrete_api/', include('blog.concrete_api.urls', namespace='blog_api'))
+    path('concrete_api/', include('blog.concrete_api.urls', namespace='blog_api')),
     path('school/', include('myapp.urls'))
 
 ]
